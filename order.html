@@ -6,6 +6,7 @@
   <meta name="description" content="Order ahead from Campus Café.">
   <title>Campus Café | Order</title>
   <link rel="stylesheet" href="css/styles.css">
+  <script src="js/order.js" defer></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -26,7 +27,78 @@
 
   <main id="main">
     <h1>Place an order</h1>
-    <p>Form coming in the next task.</p>
+    
+    <form id="order-form" class="order-form" novalidate>
+      <div class="form-group">
+        <label for="customer-name">Your name *</label>
+        <input type="text" id="customer-name" name="customerName" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone number *</label>
+        <input type="tel" id="phone" name="phone" placeholder="e.g. 07123 456789" required>
+      </div>
+
+      <div class="form-group">
+        <label for="drink-select">Select drink *</label>
+        <select id="drink-select" name="drink" required>
+          <option value="">-- Choose an item --</option>
+          <option value="Espresso">Espresso (£2.00)</option>
+          <option value="Americano">Americano (£2.40)</option>
+          <option value="Flat White">Flat white (£2.80)</option>
+          <option value="Oat Milk Latte">Oat milk latte (£3.10)</option>
+          <option value="Iced Latte">Iced latte (£3.00)</option>
+          <option value="Cold Brew">Cold brew (£3.20)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="quantity">Quantity *</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" required>
+      </div>
+
+      <div class="form-group">
+        <label for="pickup-time">Pickup time *</label>
+        <input type="time" id="pickup-time" name="pickupTime" required>
+      </div>
+
+      <fieldset class="form-group">
+        <legend>Drink size</legend>
+        <label><input type="radio" name="size" value="Regular" checked> Regular</label>
+        <label><input type="radio" name="size" value="Large"> Large (+50p)</label>
+      </fieldset>
+
+      <fieldset class="form-group">
+        <legend>Extras</legend>
+        <label><input type="checkbox" name="extras" value="Extra shot"> Extra espresso shot (+60p)</label>
+        <label><input type="checkbox" name="extras" value="Syrup"> Syrup shot (+40p)</label>
+      </fieldset>
+
+      <div class="form-group">
+        <label for="notes">Special instructions</label>
+        <textarea id="notes" name="notes" rows="3" placeholder="e.g. extra hot, decaf"></textarea>
+      </div>
+
+      <button type="submit" class="btn">Submit order</button>
+    </form>
+
+    <section class="saved-orders">
+      <h2>Recent orders</h2>
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Drink</th>
+            <th>Qty</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody id="orders-body">
+          <!-- Orders populated by order.js -->
+        </tbody>
+      </table>
+      <button id="clear-orders" class="btn btn-secondary">Clear all orders</button>
+    </section>
   </main>
 
   <footer class="site-footer">
